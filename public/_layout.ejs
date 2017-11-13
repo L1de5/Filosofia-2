@@ -62,8 +62,6 @@
             </div>
         </header>
 
-        <%- yield %>
-
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/popper/popper.min.js"></script>
@@ -76,5 +74,22 @@
 
         <!-- Custom scripts for this template -->
         <script src="js/creative.min.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD7x_c1kcT_cVEX4N09yqFDTFDOv_b9g_I",
+                authDomain: "sofia-b0b74.firebaseapp.com",
+                databaseURL: "https://sofia-b0b74.firebaseio.com",
+                projectId: "sofia-b0b74",
+                storageBucket: "sofia-b0b74.appspot.com",
+                messagingSenderId: "270302765692"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+        <%- yield %>
+
     </body>
 </html>
