@@ -1,34 +1,45 @@
-const provider = new firebase.auth.GoogleAuthProvider();
+const gProvider = new firebase.auth.GoogleAuthProvider();
+const fbProvider = new firebase.auth.FacebookAuthProvider();
 const db = firebase.database();
 var usuario;
 
-document.querySelector('#login').addEventListener('click', function(e){
-    var email = document.querySelector('#username').value + '@filosofo.com';
-    var senha = document.querySelector('#senha').value;
+firebase.auth().onAuthStateChanged((user)=> (user)?(window.location.replace('../perfil.html'), usuario = user):null);
 
-    firebase.auth().signInWithEmailAndPassword(email, senha);
-    // setTimeout(function() {
-    //     firebase.auth().onAuthStateChanged( (user)=> (user) ? (alert('LOGADO'), usuario = user) : null);
-    // },1500);
-    e.preventDefault();
-});
-
-document.querySelector('#registrar').addEventListener('click', function (e) {
+$('#registrar')[0].addEventListener('click', function (e) {
     var email = document.querySelector('#usernameReg').value + '@filosofo.com';
     var senha = document.querySelector('#senhaReg').value;
 
     firebase.auth().createUserWithEmailAndPassword(email, senha);
 });
 
+$('#normalLogin')[0].addEventListener('click', function(e) {
+    var email = $('#username')[0].value + '@filosofo.com';
+    var password = $('#senha')[0].value;
+    firebase.auth().signInWithEmailAndPassword(email, password);
+    setTimeout(function() {
+        firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../perfil.html'):(alert('Erro ao Efetuar o login. \nVerifique seus dados e tente novamente.'), window.location.replace('../index.html')));
+    },1500);
+    e.preventDefault();
+});
+
 $('#gLogin')[0].addEventListener('click', function() {
-    firebase.auth().signInWithRedirect(provider).then(function(user) {
+    firebase.auth().signInWithRedirect(gProvider).then(function(user) {
             if (user) {
-                console.log(user);
+                console.log('usuario');
             } else {
                 usuario = null;
                 console.log('usuario nao encontrado');
             }
     }).catch(function(erro) {
         alert("Falha ao realizar o login");
+    });
+});
+
+$('#fbLogin')[0].addEventListener('click', function() {
+    firebase.auth().signInWithRedirect(fbProvider);
+    firebase.auth().getRedirectResult().then(function(result) {
+        if (result.credential) var token = result.credential.accessToken;
+        var user = result.user;
+        console.log(user);
     });
 });
