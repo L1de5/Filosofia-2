@@ -1,8 +1,9 @@
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {  
-        // usuario = user;
-        // $('#nome')[0].textContent = user.displayName;
-        // $('#email')[0].textContent = user.email;
+        usuario = user;
+        $('#nome')[0].textContent = user.displayName;
+        $('#email')[0].textContent = user.email;
+        $('#username')[0].textContent = '@'+user.email.split('@')[0];
         // $('#pic')[0].src = user.photoURL;
 
         $('#deslogar')[0].addEventListener('click', function (){
