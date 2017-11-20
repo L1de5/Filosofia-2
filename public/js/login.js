@@ -3,7 +3,7 @@ const fbProvider = new firebase.auth.FacebookAuthProvider();
 const db = firebase.database();
 var usuario;
 
-firebase.auth().onAuthStateChanged((user)=> (user)?(window.location.replace('../perfil.html'), usuario = user):null);
+firebase.auth().onAuthStateChanged((user)=> (user)?(window.location.replace('../livros.html'), usuario = user):null);
 
 $('#registrar')[0].addEventListener('click', function (e) {
     var email = document.querySelector('#usernameReg').value + '@filosofo.com';
@@ -17,7 +17,7 @@ $('#normalLogin')[0].addEventListener('click', function(e) {
     var password = $('#senha')[0].value;
     firebase.auth().signInWithEmailAndPassword(email, password);
     setTimeout(function() {
-        firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../perfil.html'):(alert('Erro ao Efetuar o login. \nVerifique seus dados e tente novamente.'), window.location.replace('../index.html')));
+        firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../livros.html'):(alert('Erro ao Efetuar o login. \nVerifique seus dados e tente novamente.'), window.location.replace('../index.html')));
     },1500);
     e.preventDefault();
 });
