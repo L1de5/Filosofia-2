@@ -9,6 +9,10 @@
     height: 50%;
 }
 
+.btn-quadrado {
+    border-radius: 6px;
+}
+
 body {
     font-family: sans-serif;
 }
