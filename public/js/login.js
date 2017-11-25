@@ -32,7 +32,19 @@ firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../l
 $('#registrar')[0].addEventListener('click', function (e) {
     var email = $('#usernameReg')[0].value + '@filosofo.com';
     var senha = $('#senhaReg')[0].value;
-    firebase.auth().createUserWithEmailAndPassword(email, senha);
+    var confirmsenha = $('#confirmsenhaReg')[0].value;
+    if(senha === confirmsenha){
+        firebase.auth().createUserWithEmailAndPassword(email, senha).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            if (error.message === "Password should be at least 6 characters") buildErrorMessage("A senha deve ter pelo menos 6 caracteres");
+            console.log(error.message);
+        });
+    }else{
+        buildErrorMessage("As senhas não são correspondentes.");
+    }    
+    
+    e.preventDefault();
 });
 
 $('#normalLogin')[0].addEventListener('click', function(e) {
@@ -41,8 +53,10 @@ $('#normalLogin')[0].addEventListener('click', function(e) {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
-        
-        buildErrorMessage(error.message);
+        if (error.message === "The password is invalid or the user does not have a password.") buildErrorMessage("A senha é inválida ou o usuário não possui uma senha.");
+        if (error.message === "The email address is badly formatted.") buildErrorMessage("O endereço de e-mail está mal formatado.");
+        if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") buildErrorMessage("Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído.");
+        console.log(error.message);
     });
     // setTimeout(function() {
     //     firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../livros.html'):(alert('Erro ao Efetuar o login. \nVerifique seus dados e tente novamente.'), window.location.replace('../index.html')));
