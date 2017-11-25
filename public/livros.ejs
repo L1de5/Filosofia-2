@@ -7,10 +7,10 @@
                         <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
+                                <div id="livro1" class="project-category text-faded">
                                     Cidade de Deus
                                 </div>
-                                <div class="project-name">
+                                <div id="filosofo1" class="project-name">
                                     Santo Agostinho
                                 </div>
                             </div>
@@ -22,10 +22,10 @@
                             <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
+                                    <div id="livro2" class="project-category text-faded">
                                         Suma Teológica
                                     </div>
-                                    <div class="project-name">
+                                    <div id="filosofo2" class="project-name">
                                         São Tomás de Aquino
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                     <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
                     <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
+                        <div id="livro3" class="project-category text-faded">
                             Discurso do Método
                         </div>
                         <div class="project-name">
@@ -79,8 +79,8 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-                        <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-                        <div class="portfolio-box-caption">
+                    <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+                      <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
                                 República
@@ -98,6 +98,32 @@
     <hr>
     <button type="button" class="btn btn-dark btn-lg btn-block btn-quadrado"> TODOS LIVROS </button>
     <button type="button" id="addLivros" class="btn btn-dark btn-lg btn-block btn-quadrado"> ADICIONAR LIVROS </button>
+    <button type="button" id="trocaSenha" class="btn btn-dark btn-lg btn-block btn-quadrado" data-toggle="modal" data-target="#myModal"> TROCAR SENHA </button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> <strong> TROQUE A SENHA: </strong> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <div class="input-group">
+                                <input id="senha" type="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon2">
+                                <input id="confSenha" type="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon2">
+                            </div>
+                        </p>
+                        <div id="error">
+                        </div>   
+                    </div>
+                    <div class="modal-footer">
+                        <button id="trocarSenha" type="button" class="btn btn-default">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <hr>
     <button type="button" id="deslogar" class="btn btn-default btn-lg btn-block btn-quadrado"> DESLOGAR </button>
 </div>
 
