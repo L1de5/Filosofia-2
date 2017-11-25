@@ -1,6 +1,5 @@
 var usuario;
 
-
 firebase.auth().onAuthStateChanged(function (user) {
     (user)?usuario = user:window.location.replace('../index.html');
 });
