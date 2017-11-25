@@ -1,9 +1,8 @@
 const gProvider = new firebase.auth.GoogleAuthProvider();
 const fbProvider = new firebase.auth.FacebookAuthProvider();
 const db = firebase.database();
-var usuario;
 
-firebase.auth().onAuthStateChanged((user)=> (user)?(window.location.replace('../livros.html'), usuario = user):null);
+firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../livros.html'):null);
 
 $('#registrar')[0].addEventListener('click', function (e) {
     var email = document.querySelector('#usernameReg').value + '@filosofo.com';

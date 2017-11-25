@@ -18,7 +18,7 @@ var addMenuItem = function (nome, href) {
 
 if (url[url.length-1] === 'livros.html') {
     $('body')[0].setAttribute('class', 'ajusta-body');
-} else if (url[url.length-1] === 'index.html') {
+} else if (url[url.length-1] === 'index.html' || url[url.length-1] === '' ) {
     addMenuItem('Sobre mim', '#about');
     addMenuItem('Filosofos', '#services');
     addMenuItem('Login', '#login');
