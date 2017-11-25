@@ -30,8 +30,8 @@ const db = firebase.database();
 firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../livros.html'):null);
 
 $('#registrar')[0].addEventListener('click', function (e) {
-    var email = document.querySelector('#usernameReg').value + '@filosofo.com';
-    var senha = document.querySelector('#senhaReg').value;
+    var email = $('#usernameReg')[0].value + '@filosofo.com';
+    var senha = $('#senhaReg')[0].value;
     firebase.auth().createUserWithEmailAndPassword(email, senha);
 });
 
