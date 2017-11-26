@@ -75,13 +75,12 @@
         <h2 class="section-heading text-white">Entrar | Registrar</h2>
         <hr class="light">
 
-        <div id="erro"></div>
-
+        
         <button type="button" class="btn btn-default btn-xl js-scroll-trigger" data-toggle="modal" data-target="#myModal">Clique Aqui!</button>
-
+        
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
-
+            
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -99,11 +98,12 @@
                     <input id="senha" type="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon2">
                   </div>
                 </p>
+                <div id="erro"></div>
               </div>
               <div class="modal-footer">
                 <button id="gLogin" type="button" class="btn btn-default"> GOOGLE+ </button>
                 <button id="fbLogin" type="button" class="btn btn-default"> FACEBOOK </button>
-                <button id="normalLogin" type="button" class="btn btn-default" data-dismiss="modal">Logar</button>
+                <button id="normalLogin" type="button" class="btn btn-default" >Logar</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">Registrar</button>
               </div>
             </div>
@@ -132,9 +132,10 @@
                       aria-describedby="basic-addon2">
                   </div>
                 </p>
+                <div id="erro1"></div>
               </div>
               <div class="modal-footer">
-                <button id="registrar" type="button" class="btn btn-default" data-dismiss="modal" >Registrar</button>
+                <button id="registrar" type="button" class="btn btn-default" >Registrar</button>
               </div>
             </div>
           </div>

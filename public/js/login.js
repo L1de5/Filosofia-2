@@ -1,4 +1,4 @@
-var buildErrorMessage = function (mensagem) {
+var buildErrorMessage = function (mensagem, id) {
     var div = document.createElement('div');
     div.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
     div.setAttribute('role', 'alert');
@@ -20,7 +20,7 @@ var buildErrorMessage = function (mensagem) {
     div.appendChild(teste);
     div.appendChild(btn);
 
-    return $('#erro')[0].appendChild(div);
+    return $(id)[0].appendChild(div);
 }
 
 const gProvider = new firebase.auth.GoogleAuthProvider();
@@ -37,11 +37,12 @@ $('#registrar')[0].addEventListener('click', function (e) {
         firebase.auth().createUserWithEmailAndPassword(email, senha).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
-            if (error.message === "Password should be at least 6 characters") buildErrorMessage("A senha deve ter pelo menos 6 caracteres");
             console.log(error.message);
+            if (error.message === "Password should be at least 6 characters") buildErrorMessage("A senha deve ter pelo menos 6 caracteres", '#erro1');
+            if (error.message == null) $('#myModal1').modal('toggle');
         });
     }else{
-        buildErrorMessage("As senhas não são correspondentes.");
+        buildErrorMessage("As senhas não são correspondentes.", '#erro1');
     }    
     
     e.preventDefault();
@@ -53,10 +54,11 @@ $('#normalLogin')[0].addEventListener('click', function(e) {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
-        if (error.message === "The password is invalid or the user does not have a password.") buildErrorMessage("A senha é inválida ou o usuário não possui uma senha.");
-        if (error.message === "The email address is badly formatted.") buildErrorMessage("O endereço de e-mail está mal formatado.");
-        if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") buildErrorMessage("Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído.");
+        if (error.message === "The password is invalid or the user does not have a password.") buildErrorMessage("A senha é inválida ou o usuário não possui uma senha.", '#erro');
+        if (error.message === "The email address is badly formatted.") buildErrorMessage("O endereço de e-mail está mal formatado.", '#erro');
+        if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") buildErrorMessage("Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído.", '#erro');
         console.log(error.message);
+        if (error.message == null) $('#myModal').modal('toggle');
     });
     // setTimeout(function() {
     //     firebase.auth().onAuthStateChanged((user)=> (user)?window.location.replace('../livros.html'):(alert('Erro ao Efetuar o login. \nVerifique seus dados e tente novamente.'), window.location.replace('../index.html')));

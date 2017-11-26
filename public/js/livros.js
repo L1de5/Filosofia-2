@@ -21,6 +21,7 @@ $('#trocarSenha')[0].addEventListener('click', function () {
     var confSenha = $('#confSenha')[0].value;
     if(senha === confSenha){
         usuario.updatePassaword(senha);
+        $('#myModal').modal('toggle');
     }else{
         buildErrorMessage("Senhas não batem");
     }

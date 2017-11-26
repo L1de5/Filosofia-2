@@ -22,3 +22,14 @@ if (url[url.length-1] === 'livros.html' || url[url.length-1].split('?')[0] === '
     addMenuItem('Filosofos', '#services');
     addMenuItem('Login', '#login');
 }
+if (url[url.length - 1] === 'livros.html') {
+    $('body')[0].setAttribute('class', 'ajusta-body');
+} else if (url[url.length - 1].split('?')[0] === 'livro.html') {
+    $('body')[0].setAttribute('class', 'ajusta-body');
+    addMenuItem('Todos Os Livros', 'livros.html');
+}
+else if (url[url.length - 1] === 'index.html' || url[url.length - 1] === '') {
+    addMenuItem('Sobre mim', '#about');
+    addMenuItem('Filosofos', '#services');
+    addMenuItem('Login', '#login');
+}
