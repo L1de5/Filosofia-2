@@ -1,4 +1,4 @@
-var buildErrorMessage = function (mensagem) {
+var buildErrorMessage = function (mensagem, id) {
     var div = document.createElement('div');
     div.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
     div.setAttribute('role', 'alert');
@@ -20,7 +20,7 @@ var buildErrorMessage = function (mensagem) {
     div.appendChild(teste);
     div.appendChild(btn);
 
-    return $('#erro')[0].appendChild(div);
+    return $(id)[0].appendChild(div);
 }
 
 const gProvider = new firebase.auth.GoogleAuthProvider();
