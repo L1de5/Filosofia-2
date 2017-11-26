@@ -4,7 +4,7 @@ firebase.auth().onAuthStateChanged((user)=> (user)? usuario = user.email.split('
 
 var mostraComentarios = function (){
     $('#comentarios')[0].textContent = '';
-    firebase.database().ref('comentarios/Cidade_de_Deus').on('value', function(snapshot) {
+    firebase.database().ref('comentarios/apologia%20de%20s%C3%B3crates').on('value', function(snapshot) {
         var comentarios = snapshot.toJSON(snapshot);
 
         for(var i = Object.keys(comentarios).length-1; i >= 0; i--) {
