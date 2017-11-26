@@ -4,7 +4,7 @@ firebase.auth().onAuthStateChanged((user)=> (user)? usuario = user.email.split('
 
 var mostraComentarios = function (){
     $('#comentarios')[0].textContent = '';
-    firebase.database().ref('livros/Cidade_de_Deus').on('value', function(snapshot) {
+    firebase.database().ref('comentarios/Cidade_de_Deus').on('value', function(snapshot) {
         var comentarios = snapshot.toJSON(snapshot);
 
         for(var i = Object.keys(comentarios).length-1; i >= 0; i--) {
@@ -30,13 +30,13 @@ var mostraComentarios = function (){
 mostraComentarios();
 
 var adicionaComentario = function (hora, nomeDoLivro, selecao, comentario, username) {
-    firebase.database().ref('livros/' + nomeDoLivro +'/'+ hora).set({
+    firebase.database().ref('comentarios/' + nomeDoLivro +'/'+ hora).set({
         usuario: username,
         selecao: selecao,
         comentario: comentario
     });
 }
-
+    
 $('#pagina')[0].addEventListener('mouseup', function () {
     var selObj = window.getSelection();
     var selecao = selObj.toString();
@@ -49,5 +49,3 @@ $('#pagina')[0].addEventListener('mouseup', function () {
         });
     }
 });
-
-

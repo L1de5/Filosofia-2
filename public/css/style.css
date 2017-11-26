@@ -42,3 +42,8 @@ body {
     max-height: 600px;
     overflow-y: scroll;
 }
+
+#pagina {
+    max-height: 550px;
+    overflow-y: scroll;
+}

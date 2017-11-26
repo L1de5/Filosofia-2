@@ -4,26 +4,68 @@ firebase.auth().onAuthStateChanged(function (user) {
     (user)?usuario = user:window.location.replace('../index.html');
 });
 
-var adicionaAosFavoritos = function () {
-    firebase.database().ref('user/' + usuario.email.split('@')[0]).set({
-        favoritos: {
-            'casa': {
-                foto: 'asd',
-                autor: ''
-            }
+var adicionaLivro = function (nome, autor, foto, texto) {
+    firebase.database().ref('livros/' + nome).set({
+        nome: nome,
+        autor: autor,
+        foto: foto,
+        texto: texto
+    });
+}
+
+$('#adicionarLivro').addEventListener('click', function(){
+    adicionaLivro($('#nome')[0].value, $('#autor')[0].value, $('#foto')[0].value, $('#texto')[0].value);
+});
+
+var mostraLivros = function () {
+    firebase.database().ref('livros/').on('value', function(snapshot) {
+        var livros = snapshot.toJSON(snapshot);
+
+        for(var i = Object.keys(livros).length-1; i >= 0; i--) {
+            var obj = livros[Object.keys(livros)[i]];
+
+            var nomeLink = obj.nome;
+            var autorLink = obj.autor;
+            
+            var div1 = document.createElement('div');
+            div1.setAttribute('class', 'col-lg-4 col-sm-6');
+
+            var a = document.createElement('a');
+            a.setAttribute('class', 'portfolio-box');
+            a.setAttribute('href', 'livro.html'+nomeLink+'?'+autorLink);
+
+            var img = document.createElement('img');
+            img.setAttribute('class', 'img-fluid');
+            img.setAttribute('src', 'http://sn.uploads.im/t/'+obj.foto+'.jpg');
+
+            var div2 = document.createElement('div');
+            div2.setAttribute('class', 'portfolio-box-caption');
+
+            var info= document.createElement('div');
+            info.setAttribute('class', 'portfolio-box-caption-content');
+
+            var livro = document.createElement('div');
+            livro.setAttribute('class', 'project-category text-faded');
+            livro.textContent = obj.nome.toUpperCase();
+
+            var autor = document.createElement('div');
+            autor.setAttribute('class', 'project-name');
+            autor.textContent = obj.autor.toUpperCase();
+            
+            info.appendChild(livro);
+            info.appendChild(autor);
+            div2.appendChild(info);
+            a.appendChild(img);
+            a.appendChild(div2);
+            div1.appendChild(a);
+
+            $('#livros')[0].appendChild(div1);
         }
     });
 }
-$('#trocarSenha')[0].addEventListener('click', function () {
-    var usuario = firebase.auth().currentUser;
-    var senha = $('#senha')[0].value;
-    var confSenha = $('#confSenha')[0].value;
-    if(senha === confSenha){
-        usuario.updatePassaword(senha);
-    }else{
-        buildErrorMessage("Senhas não batem");
-    }
-});
+
+mostraLivros();
+
 var buildErrorMessage = function (mensagem) {
     var div = document.createElement('div');
     div.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
